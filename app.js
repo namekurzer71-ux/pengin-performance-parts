@@ -48,7 +48,6 @@ const searchInput = document.querySelector("#search-input");
 const cartItems = document.querySelector("#cart-items");
 const grandTotal = document.querySelector("#grand-total");
 const selectedCount = document.querySelector("#selected-count");
-const copyButton = document.querySelector("#copy-button");
 const clearButton = document.querySelector("#clear-button");
 const emptyState = document.querySelector("#empty-state");
 const toast = document.querySelector("#toast");
@@ -213,7 +212,6 @@ function renderSummary() {
 
   selectedCount.textContent = quantityFormatter.format(totalItems);
   grandTotal.textContent = euro.format(total);
-  copyButton.disabled = selected.length === 0;
   clearButton.disabled = selected.length === 0;
   cartItems.replaceChildren();
 
@@ -261,22 +259,6 @@ clearButton.addEventListener("click", () => {
   renderParts();
   renderSummary();
   showToast("Build zurückgesetzt.");
-});
-copyButton.addEventListener("click", async () => {
-  const selected = parts.filter((part) => quantities[part.name]);
-  const lines = [
-    "MEIN BUILD — WERKBANK",
-    ...selected.map((part) => `${quantities[part.name]}× ${part.name} — ${euro.format(part.price * quantities[part.name])}`),
-    `Gesamtsumme: ${euro.format(selected.reduce((sum, part) => sum + part.price * quantities[part.name], 0))}`,
-  ];
-
-  try {
-    await navigator.clipboard.writeText(lines.join("\n"));
-    showToast("Build in die Zwischenablage kopiert.");
-  } catch (error) {
-    console.error("Der Build konnte nicht kopiert werden.", error);
-    showToast("Kopieren nicht möglich. Öffne die Seite über localhost oder HTTPS.");
-  }
 });
 document.addEventListener("keydown", (event) => {
   if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
