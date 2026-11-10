@@ -12,7 +12,8 @@ Eine eigenständige, responsive Website für den Fahrzeugteile-Katalog. Das Desi
 - Performance-Teile nach den Kategorien Antriebsstränge, Reifen, Bremsen, Getriebe und Drift-Tuning filtern
 - Teile auswählen und Mengen von 1 bis 9999 festlegen
 - Zwischensummen und Gesamtsumme live berechnen
-- Kundenpreis live berechnen und Auswahl lokal im Browser speichern oder zurücksetzen
+- Kundenpreis mit einem Rabatt von bis zu 20 % oder einem Aufschlag von bis zu 30 % anpassen
+- Auswahl und Preisanpassung lokal im Browser speichern oder zurücksetzen
 
 Das Logo liegt als `pengin-performance.png` im Projektordner.
 Die Auswahl wird nur im lokalen Speicher des verwendeten Browsers abgelegt; es gibt keinen Server und keine Benutzerkonten.

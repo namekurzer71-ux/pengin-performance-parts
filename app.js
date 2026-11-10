@@ -19,6 +19,9 @@ const parts = [
 ];
 
 const storageKey = "werkbank-build-v2";
+const priceAdjustmentStorageKey = `${storageKey}-price-adjustment`;
+const minimumPriceAdjustment = -20;
+const maximumPriceAdjustment = 30;
 const euro = new Intl.NumberFormat("de-DE", {
   style: "currency",
   currency: "EUR",
@@ -32,6 +35,9 @@ const searchInput = document.querySelector("#search-input");
 const cartItems = document.querySelector("#cart-items");
 const grandTotal = document.querySelector("#grand-total");
 const selectedCount = document.querySelector("#selected-count");
+const priceAdjustmentValue = document.querySelector("#price-adjustment-value");
+const decreasePriceButton = document.querySelector("#discount-decrease");
+const increasePriceButton = document.querySelector("#discount-increase");
 const clearButton = document.querySelector("#clear-button");
 const emptyState = document.querySelector("#empty-state");
 const toast = document.querySelector("#toast");
@@ -39,7 +45,28 @@ const toast = document.querySelector("#toast");
 let activeDepartment = "maintenance";
 let activeCategory = "Alle Teile";
 let quantities = loadBuild();
+let priceAdjustment = loadPriceAdjustment();
 let toastTimeout;
+
+function loadPriceAdjustment() {
+  try {
+    const saved = Number(localStorage.getItem(priceAdjustmentStorageKey) || 0);
+    if (!Number.isInteger(saved)) return 0;
+    return Math.max(minimumPriceAdjustment, Math.min(maximumPriceAdjustment, saved));
+  } catch (error) {
+    console.error("Die Preisanpassung konnte nicht geladen werden.", error);
+    return 0;
+  }
+}
+
+function savePriceAdjustment() {
+  try {
+    localStorage.setItem(priceAdjustmentStorageKey, String(priceAdjustment));
+  } catch (error) {
+    console.error("Die Preisanpassung konnte nicht gespeichert werden.", error);
+    showToast("Preisanpassung konnte nicht gespeichert werden.");
+  }
+}
 
 function loadBuild() {
   try {
@@ -199,11 +226,15 @@ function setQuantity(part, quantity) {
 function renderSummary() {
   const selected = parts.filter((part) => quantities[part.name]);
   const totalItems = selected.reduce((sum, part) => sum + quantities[part.name], 0);
-  const total = selected.reduce((sum, part) => sum + part.price * quantities[part.name], 0);
+  const subtotal = selected.reduce((sum, part) => sum + part.price * quantities[part.name], 0);
+  const total = Math.round(subtotal * (1 + priceAdjustment / 100));
 
   selectedCount.textContent = quantityFormatter.format(totalItems);
   grandTotal.textContent = euro.format(total);
-  clearButton.disabled = selected.length === 0;
+  priceAdjustmentValue.textContent = `${priceAdjustment > 0 ? "+" : ""}${priceAdjustment} %`;
+  decreasePriceButton.disabled = priceAdjustment <= minimumPriceAdjustment;
+  increasePriceButton.disabled = priceAdjustment >= maximumPriceAdjustment;
+  clearButton.disabled = selected.length === 0 && priceAdjustment === 0;
   cartItems.replaceChildren();
 
   if (selected.length === 0) {
@@ -244,6 +275,18 @@ function showToast(message) {
 }
 
 searchInput.addEventListener("input", renderParts);
+decreasePriceButton.addEventListener("click", () => {
+  if (priceAdjustment <= minimumPriceAdjustment) return;
+  priceAdjustment -= 1;
+  savePriceAdjustment();
+  renderSummary();
+});
+increasePriceButton.addEventListener("click", () => {
+  if (priceAdjustment >= maximumPriceAdjustment) return;
+  priceAdjustment += 1;
+  savePriceAdjustment();
+  renderSummary();
+});
 departmentTabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     activeDepartment = tab.dataset.department;
@@ -277,7 +320,9 @@ departmentTabs.forEach((tab) => {
 });
 clearButton.addEventListener("click", () => {
   quantities = {};
+  priceAdjustment = 0;
   saveBuild();
+  savePriceAdjustment();
   renderParts();
   renderSummary();
   showToast("Build zurückgesetzt.");
