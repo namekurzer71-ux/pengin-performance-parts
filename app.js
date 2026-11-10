@@ -4,7 +4,7 @@ const parts = [
   { name: "Luftfilter", price: 1462, category: "Wartung", department: "maintenance" },
   { name: "Zündkerzen", price: 2064, category: "Wartung", department: "maintenance" },
   { name: "Reparaturkit", price: 2700, category: "Wartung", department: "maintenance" },
-  { name: "Service (1x Fahrwerksteile)", price: 4300, category: "Wartung", department: "maintenance" },
+  { name: "Service (1x Fahrwerksteile)", price: 3500, category: "Wartung", department: "maintenance" },
   { name: "Allradantrieb (AWD)", price: 25800, category: "Antriebsstränge", department: "performance" },
   { name: "Heckantrieb", price: 12040, category: "Antriebsstränge", department: "performance" },
   { name: "Frontantrieb (FWD)", price: 12040, category: "Antriebsstränge", department: "performance" },
