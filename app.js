@@ -4,15 +4,11 @@ const parts = [
   { name: "Luftfilter", price: 1462, category: "Wartung", department: "maintenance" },
   { name: "Zündkerzen", price: 2064, category: "Wartung", department: "maintenance" },
   { name: "Reparaturkit", price: 2700, category: "Wartung", department: "maintenance" },
-  { name: "Reinigungsset", price: 1032, category: "Wartung", department: "maintenance" },
-  { name: "Panzertape", price: 946, category: "Wartung", department: "maintenance" },
+  { name: "Service (1x Fahrwerksteile)", price: 4300, category: "Wartung", department: "maintenance" },
   { name: "Allradantrieb (AWD)", price: 25800, category: "Antriebsstränge", department: "performance" },
   { name: "Heckantrieb", price: 12040, category: "Antriebsstränge", department: "performance" },
   { name: "Frontantrieb (FWD)", price: 12040, category: "Antriebsstränge", department: "performance" },
   { name: "Ersatzreifen", price: 2580, category: "Reifen", department: "performance" },
-  { name: "Felgensatz", price: 2752, category: "Reifen", department: "performance" },
-  { name: "Reifenrauch-Set", price: 2752, category: "Reifen", department: "performance" },
-  { name: "Schusssichere Reifen", price: 7568, category: "Reifen", department: "performance" },
   { name: "Slick-Reifen", price: 6020, category: "Reifen", department: "performance" },
   { name: "Semi-Slick-Reifen", price: 4816, category: "Reifen", department: "performance" },
   { name: "Offroad-Reifen", price: 5504, category: "Reifen", department: "performance" },
@@ -20,7 +16,6 @@ const parts = [
   { name: "Keramikbremsen", price: 12900, category: "Bremsen", department: "performance" },
   { name: "Schaltgetriebe", price: 13760, category: "Getriebe", department: "performance" },
   { name: "Drift-Tuning-Kit", price: 13760, category: "Drift-Tuning", department: "performance" },
-  { name: "Turbolader", price: 15480, category: "Turbolader", department: "performance" },
 ];
 
 const storageKey = "werkbank-build-v2";

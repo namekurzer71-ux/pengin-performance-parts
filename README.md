@@ -9,7 +9,7 @@ Eine eigenständige, responsive Website für den Fahrzeugteile-Katalog. Das Desi
 ## Funktionen
 
 - Zwischen den Bereichen Wartung und Performance-Abteilung wechseln
-- Performance-Teile nach den Kategorien Antriebsstränge, Reifen, Bremsen, Getriebe, Drift-Tuning und Turbolader filtern
+- Performance-Teile nach den Kategorien Antriebsstränge, Reifen, Bremsen, Getriebe und Drift-Tuning filtern
 - Teile auswählen und Mengen von 1 bis 9999 festlegen
 - Zwischensummen und Gesamtsumme live berechnen
 - Kundenpreis live berechnen und Auswahl lokal im Browser speichern oder zurücksetzen
