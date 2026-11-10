@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050914">
+    <meta name="description" content="Fahrzeugteile auswählen, Mengen anpassen und den Gesamtpreis direkt berechnen.">
+    <title>Pengin Performance — Teilekalkulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Pengin Performance Startseite">
+          <span class="brand-mark">
+            <img src="pengin-performance.png" alt="">
+          </span>
+          <span class="brand-copy"><strong>PENGIN</strong><small>PERFORMANCE PARTS</small></span>
+        </a>
+        <div class="topbar-note"><span class="status-dot"></span> BUILD YOUR NEXT SETUP</div>
+      </header>
+
+      <main>
+        <section class="intro">
+          <p class="eyebrow"><span>01</span> TEILEKATALOG</p>
+          <h1>Dein Build.<br><span>Dein Budget.</span></h1>
+          <p class="intro-copy">Stell deinen Warenkorb zusammen. Wähle die Teile, passe die Stückzahl an und behalte die Summe im Blick.</p>
+          <div class="catalog-meta">
+            <span class="meta-line"></span>
+            <span id="catalog-count">34 TEILE IM KATALOG</span>
+          </div>
+        </section>
+
+        <section class="workspace" aria-label="Fahrzeugteile-Kalkulator">
+          <div class="catalog-panel">
+            <div class="catalog-toolbar">
+              <label class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <span class="visually-hidden">Teile suchen</span>
+                <input id="search-input" type="search" placeholder="Teil suchen …" autocomplete="off">
+                <kbd>/</kbd>
+              </label>
+              <div id="category-filters" class="category-filters" aria-label="Kategorien"></div>
+            </div>
+
+            <div class="list-heading" aria-hidden="true">
+              <span>ARTIKEL</span><span>PREIS / STÜCK</span><span>MENGE</span>
+            </div>
+            <div id="parts-list" class="parts-list" aria-live="polite"></div>
+            <p id="empty-state" class="empty-state" hidden>Keine Teile gefunden. Versuch einen anderen Suchbegriff.</p>
+          </div>
+
+          <aside class="summary-panel" aria-label="Dein Warenkorb">
+            <div class="summary-top">
+              <div>
+                <p class="eyebrow"><span>02</span> ÜBERSICHT</p>
+                <h2>Dein Build</h2>
+              </div>
+              <span id="selected-count" class="selected-count">0</span>
+            </div>
+            <div id="cart-items" class="cart-items">
+              <p class="cart-empty">Noch keine Teile ausgewählt.<br><span>Füge etwas zu deinem Build hinzu.</span></p>
+            </div>
+            <div class="summary-bottom">
+              <div class="total-row"><span>GESAMTSUMME</span><span id="grand-total">0&nbsp;€</span></div>
+              <button id="copy-button" class="copy-button" type="button" disabled>
+                <span>BUILD KOPIEREN</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <rect x="7" y="6" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M13 6V4.5A1.5 1.5 0 0 0 11.5 3h-7A1.5 1.5 0 0 0 3 4.5v9A1.5 1.5 0 0 0 4.5 15H7" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </button>
+              <button id="clear-button" class="clear-button" type="button" disabled>BUILD ZURÜCKSETZEN</button>
+              <p class="save-note"><span aria-hidden="true">↳</span> Dein Build wird automatisch auf diesem Gerät gespeichert.</p>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>PENGIN PERFORMANCE <span class="footer-separator">/</span> PARTS &amp; PERFORMANCE</span>
+        <span>PREISE IN EUR <span class="footer-separator">·</span> BUILT FOR THE NEXT LEVEL</span>
+      </footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
