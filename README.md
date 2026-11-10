@@ -1,6 +1,6 @@
 # Pengin Performance — Teilekalkulator
 
-Eine eigenständige, responsive Website für den Fahrzeugteile-Katalog. Das Design orientiert sich am Pengin-Performance-Logo: überwiegend dunkle Flächen, helle Schrift sowie leuchtende Cyan- und Blautöne. Sie übernimmt die 34 Artikel und Euro-Stückpreise aus `../Fahrzeugteile_Preiskalkulation_mit_Button.xlsm`.
+Eine eigenständige, responsive Website für den Fahrzeugteile-Katalog. Das Design orientiert sich am Pengin-Performance-Logo: überwiegend dunkle Flächen, helle Schrift sowie leuchtende Cyan- und Blautöne. Sie übernimmt die ausgewählten Artikel und Euro-Stückpreise aus `../Fahrzeugteile_Preiskalkulation_mit_Button.xlsm`.
 
 ## Starten
 
@@ -8,10 +8,11 @@ Eine eigenständige, responsive Website für den Fahrzeugteile-Katalog. Das Desi
 
 ## Funktionen
 
-- Artikel suchen und nach Kategorien filtern
+- Zwischen den Bereichen Wartung und Performance-Abteilung wechseln
+- Performance-Teile nach den Kategorien Antriebsstränge, Reifen, Bremsen, Getriebe, Drift-Tuning und Turbolader filtern
 - Teile auswählen und Mengen von 1 bis 9999 festlegen
 - Zwischensummen und Gesamtsumme live berechnen
-- Build lokal im Browser speichern, kopieren oder zurücksetzen
+- Kundenpreis live berechnen und Auswahl lokal im Browser speichern oder zurücksetzen
 
 Das Logo liegt als `pengin-performance.png` im Projektordner.
 Die Auswahl wird nur im lokalen Speicher des verwendeten Browsers abgelegt; es gibt keinen Server und keine Benutzerkonten.

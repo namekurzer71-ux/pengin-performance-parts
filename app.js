@@ -1,41 +1,29 @@
 const parts = [
-  { name: "Motoröl", price: 1204, category: "Motor & Wartung" },
-  { name: "Ersatzreifen", price: 2580, category: "Reifen & Räder" },
-  { name: "Ersatzkupplung", price: 4300, category: "Motor & Wartung" },
-  { name: "Luftfilter", price: 1462, category: "Motor & Wartung" },
-  { name: "Zündkerzen", price: 2064, category: "Motor & Wartung" },
-  { name: "Bremsbeläge", price: 3440, category: "Fahrwerk & Bremsen" },
-  { name: "Fahrwerksteile", price: 4300, category: "Fahrwerk & Bremsen" },
-  { name: "Reparaturkit", price: 2700, category: "Motor & Wartung" },
-  { name: "Reinigungsset", price: 1032, category: "Motor & Wartung" },
-  { name: "Panzertape", price: 946, category: "Motor & Wartung" },
-  { name: "Leistungsteile", price: 4816, category: "Performance & Antrieb" },
-  { name: "Karosserieteile", price: 1720, category: "Karosserie & Optik" },
-  { name: "Lackier-Set", price: 2064, category: "Karosserie & Optik" },
-  { name: "Felgensatz", price: 2752, category: "Reifen & Räder" },
-  { name: "Reifenrauch-Set", price: 2752, category: "Reifen & Räder" },
-  { name: "Extras-Set", price: 3096, category: "Karosserie & Optik" },
-  { name: "Stance-Kit", price: 5160, category: "Fahrwerk & Bremsen" },
-  { name: "Licht-Controller", price: 1376, category: "Karosserie & Optik" },
-  { name: "Schusssichere Reifen", price: 7568, category: "Reifen & Räder" },
-  { name: "Turbolader", price: 15480, category: "Performance & Antrieb" },
-  { name: "Schaltgetriebe", price: 13760, category: "Performance & Antrieb" },
-  { name: "Allradantrieb (AWD)", price: 25800, category: "Performance & Antrieb" },
-  { name: "Heckantrieb", price: 12040, category: "Performance & Antrieb" },
-  { name: "Frontantrieb (FWD)", price: 12040, category: "Performance & Antrieb" },
-  { name: "Slick-Reifen", price: 6020, category: "Reifen & Räder" },
-  { name: "Semi-Slick-Reifen", price: 4816, category: "Reifen & Räder" },
-  { name: "Offroad-Reifen", price: 5504, category: "Reifen & Räder" },
-  { name: "Drift-Tuning-Kit", price: 13760, category: "Performance & Antrieb" },
-  { name: "Keramikbremsen", price: 12900, category: "Fahrwerk & Bremsen" },
-  { name: "E-Motor", price: 6880, category: "Elektro & Extras" },
-  { name: "E-Akku", price: 7740, category: "Elektro & Extras" },
-  { name: "E-Kühlmittel", price: 1634, category: "Elektro & Extras" },
-  { name: "Lachgas-Einbaukit", price: 20640, category: "Performance & Antrieb" },
-  { name: "Lachgasflasche", price: 4300, category: "Performance & Antrieb" },
+  { name: "Motoröl", price: 1204, category: "Wartung", department: "maintenance" },
+  { name: "Ersatzkupplung", price: 4300, category: "Wartung", department: "maintenance" },
+  { name: "Luftfilter", price: 1462, category: "Wartung", department: "maintenance" },
+  { name: "Zündkerzen", price: 2064, category: "Wartung", department: "maintenance" },
+  { name: "Reparaturkit", price: 2700, category: "Wartung", department: "maintenance" },
+  { name: "Reinigungsset", price: 1032, category: "Wartung", department: "maintenance" },
+  { name: "Panzertape", price: 946, category: "Wartung", department: "maintenance" },
+  { name: "Allradantrieb (AWD)", price: 25800, category: "Antriebsstränge", department: "performance" },
+  { name: "Heckantrieb", price: 12040, category: "Antriebsstränge", department: "performance" },
+  { name: "Frontantrieb (FWD)", price: 12040, category: "Antriebsstränge", department: "performance" },
+  { name: "Ersatzreifen", price: 2580, category: "Reifen", department: "performance" },
+  { name: "Felgensatz", price: 2752, category: "Reifen", department: "performance" },
+  { name: "Reifenrauch-Set", price: 2752, category: "Reifen", department: "performance" },
+  { name: "Schusssichere Reifen", price: 7568, category: "Reifen", department: "performance" },
+  { name: "Slick-Reifen", price: 6020, category: "Reifen", department: "performance" },
+  { name: "Semi-Slick-Reifen", price: 4816, category: "Reifen", department: "performance" },
+  { name: "Offroad-Reifen", price: 5504, category: "Reifen", department: "performance" },
+  { name: "Bremsbeläge", price: 3440, category: "Bremsen", department: "performance" },
+  { name: "Keramikbremsen", price: 12900, category: "Bremsen", department: "performance" },
+  { name: "Schaltgetriebe", price: 13760, category: "Getriebe", department: "performance" },
+  { name: "Drift-Tuning-Kit", price: 13760, category: "Drift-Tuning", department: "performance" },
+  { name: "Turbolader", price: 15480, category: "Turbolader", department: "performance" },
 ];
 
-const storageKey = "werkbank-build-v1";
+const storageKey = "werkbank-build-v2";
 const euro = new Intl.NumberFormat("de-DE", {
   style: "currency",
   currency: "EUR",
@@ -44,6 +32,7 @@ const euro = new Intl.NumberFormat("de-DE", {
 const quantityFormatter = new Intl.NumberFormat("de-DE");
 const partsList = document.querySelector("#parts-list");
 const categoryFilters = document.querySelector("#category-filters");
+const departmentTabs = [...document.querySelectorAll(".department-tab")];
 const searchInput = document.querySelector("#search-input");
 const cartItems = document.querySelector("#cart-items");
 const grandTotal = document.querySelector("#grand-total");
@@ -52,7 +41,7 @@ const clearButton = document.querySelector("#clear-button");
 const emptyState = document.querySelector("#empty-state");
 const toast = document.querySelector("#toast");
 
-const categories = ["Alle Teile", ...new Set(parts.map((part) => part.category))];
+let activeDepartment = "maintenance";
 let activeCategory = "Alle Teile";
 let quantities = loadBuild();
 let toastTimeout;
@@ -87,8 +76,11 @@ function saveBuild() {
 
 function renderFilters() {
   categoryFilters.replaceChildren();
+  const departmentParts = parts.filter((part) => part.department === activeDepartment);
+  const categories = [...new Set(departmentParts.map((part) => part.category))];
+  categoryFilters.hidden = categories.length <= 1;
 
-  for (const category of categories) {
+  for (const category of ["Alle Teile", ...categories]) {
     const button = document.createElement("button");
     button.className = "filter-button";
     button.type = "button";
@@ -105,12 +97,16 @@ function renderFilters() {
 
 function renderParts() {
   const search = normalize(searchInput.value.trim());
+  const departmentParts = parts.filter((part) => part.department === activeDepartment);
   const filteredParts = parts.filter((part) => {
+    const matchesDepartment = part.department === activeDepartment;
     const matchesCategory = activeCategory === "Alle Teile" || part.category === activeCategory;
     const matchesSearch = normalize(`${part.name} ${part.category}`).includes(search);
-    return matchesCategory && matchesSearch;
+    return matchesDepartment && matchesCategory && matchesSearch;
   });
 
+  document.querySelector("#catalog-count").textContent =
+    `${departmentParts.length} ${departmentParts.length === 1 ? "TEIL" : "TEILE"} IM BEREICH`;
   partsList.replaceChildren();
   emptyState.hidden = filteredParts.length > 0;
 
@@ -220,7 +216,7 @@ function renderSummary() {
     message.className = "cart-empty";
     message.append("Noch keine Teile ausgewählt.");
     const hint = document.createElement("span");
-    hint.append(document.createElement("br"), "Füge etwas zu deinem Build hinzu.");
+    hint.append(document.createElement("br"), "Füge Teile zum Kundenangebot hinzu.");
     message.append(hint);
     cartItems.append(message);
     return;
@@ -253,6 +249,37 @@ function showToast(message) {
 }
 
 searchInput.addEventListener("input", renderParts);
+departmentTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    activeDepartment = tab.dataset.department;
+    activeCategory = "Alle Teile";
+    departmentTabs.forEach((button) => {
+      button.setAttribute("aria-selected", String(button === tab));
+      button.tabIndex = button === tab ? 0 : -1;
+    });
+    renderFilters();
+    renderParts();
+  });
+  tab.addEventListener("keydown", (event) => {
+    const currentIndex = departmentTabs.indexOf(tab);
+    let nextIndex;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (currentIndex + 1) % departmentTabs.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (currentIndex - 1 + departmentTabs.length) % departmentTabs.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = departmentTabs.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    departmentTabs[nextIndex].focus();
+    departmentTabs[nextIndex].click();
+  });
+});
 clearButton.addEventListener("click", () => {
   quantities = {};
   saveBuild();

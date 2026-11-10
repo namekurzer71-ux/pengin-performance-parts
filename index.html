@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
-    <script src="app.js?v=2" defer></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <script src="app.js?v=3" defer></script>
   </head>
   <body>
     <div class="page-shell">
@@ -31,13 +31,19 @@
           <p class="intro-copy">Stell deinen Warenkorb zusammen. Wähle die Teile, passe die Stückzahl an und behalte die Summe im Blick.</p>
           <div class="catalog-meta">
             <span class="meta-line"></span>
-            <span id="catalog-count">34 TEILE IM KATALOG</span>
+            <span id="catalog-count">7 TEILE IM BEREICH</span>
           </div>
         </section>
 
         <section class="workspace" aria-label="Fahrzeugteile-Kalkulator">
           <div class="catalog-panel">
             <div class="catalog-toolbar">
+              <div class="department-tabs" role="tablist" aria-label="Werkstattbereiche">
+                <button class="department-tab" id="maintenance-tab" type="button" role="tab"
+                  data-department="maintenance" aria-selected="true" aria-controls="parts-list">Wartung</button>
+                <button class="department-tab" id="performance-tab" type="button" role="tab"
+                  data-department="performance" aria-selected="false" aria-controls="parts-list" tabindex="-1">Performance-Abteilung</button>
+              </div>
               <label class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/>
@@ -57,21 +63,21 @@
             <p id="empty-state" class="empty-state" hidden>Keine Teile gefunden. Versuch einen anderen Suchbegriff.</p>
           </div>
 
-          <aside class="summary-panel" aria-label="Dein Warenkorb">
+          <aside class="summary-panel" aria-label="Kundenpreis">
             <div class="summary-top">
               <div>
                 <p class="eyebrow"><span>02</span> ÜBERSICHT</p>
-                <h2>Dein Build</h2>
+                <h2>Kundenpreis</h2>
               </div>
               <span id="selected-count" class="selected-count">0</span>
             </div>
             <div id="cart-items" class="cart-items">
-              <p class="cart-empty">Noch keine Teile ausgewählt.<br><span>Füge etwas zu deinem Build hinzu.</span></p>
+              <p class="cart-empty">Noch keine Teile ausgewählt.<br><span>Füge Teile zum Kundenangebot hinzu.</span></p>
             </div>
             <div class="summary-bottom">
-              <div class="total-row"><span>GESAMTSUMME</span><span id="grand-total">0&nbsp;€</span></div>
+              <div class="total-row"><span>GESAMTPREIS</span><span id="grand-total">0&nbsp;€</span></div>
               <button id="clear-button" class="clear-button" type="button" disabled>BUILD ZURÜCKSETZEN</button>
-              <p class="save-note"><span aria-hidden="true">↳</span> Dein Build wird automatisch auf diesem Gerät gespeichert.</p>
+              <p class="save-note"><span aria-hidden="true">↳</span> Deine Auswahl wird automatisch auf diesem Gerät gespeichert.</p>
             </div>
           </aside>
         </section>
